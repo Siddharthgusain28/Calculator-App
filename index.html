@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculator Using HTML CSS and JavaScript">
+    <title>Calculator</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="calculator">
+            <div id="display"></div>
+            <div class="calculatorbtn">
+                <button class="btn clear sym">AC</button>
+                <button class="btn sym" value="/">/</button>
+                <button class="btn sym" value="*">*</button>
+                <button class="btn delete sym">DE</button>
+                <button class="btn" value="7">7</button>
+                <button class="btn" value="8">8</button>
+                <button class="btn" value="9">9</button>
+                <button class="btn sym" value="-">-</button>
+                <button class="btn" value="4">4</button>
+                <button class="btn" value="5">5</button>
+                <button class="btn" value="6">6</button>
+                <button class="btn sym" value="+">+</button>
+                <button class="btn" value="1">1</button>
+                <button class="btn" value="2">2</button>
+                <button class="btn" value="3">3</button>
+                <button class="btn sym" value=".">.</button>
+                <button class="btn" value="00">00</button>
+                <button class="btn" value="0">0</button>
+                <button class="btn equal sym">=</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const display=document.querySelector("#display")
+        document.querySelector(".calculatorbtn").addEventListener("click", function(e){
+            if(e.target.value==undefined){
+                display.innerHTML+="";
+            }
+            else{
+                display.innerHTML+=e.target.value;
+            }
+            
+            document.querySelector(".equal").addEventListener("click", function(){
+                display.innerHTML=eval(display.innerHTML)
+                
+            })
+            data()
+        })
+        document.querySelector(".delete").addEventListener("click",function(){
+            display.innerHTML=display.textContent.substr(0,display.textContent.length-1)
+            data()
+        })
+        document.querySelector(".clear").addEventListener("click",function(){
+            display.innerHTML=""
+            data()
+        })
+
+        function data(){
+            localStorage.setItem("data",display.textContent)
+        }
+
+        function getData(){
+            display.textContent= localStorage.getItem("data")
+        }
+
+        getData()
+
+    </script>
+    
+</body>
+</html>
